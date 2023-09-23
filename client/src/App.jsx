@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Landing from './components/Landing/Landing';
 import Home from './components/Home/Home';
@@ -9,11 +9,12 @@ import Activities from './components/Activities/Activities'
 import About from './components/About/About';
 
 function App() {
+  const location = useLocation();
 
   return (
 <>
     <div className='App'>
-      <Nav />
+      {location.pathname !== '/' ? <Nav /> : null}
       <Routes>
         <Route path= '/' element={<Landing />} />
         <Route path= '/home' element={<Home />} />
