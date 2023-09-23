@@ -16,7 +16,6 @@ function Home () {
         dispatch(displayContinent(continent));
     }
     
-
     const handleClickAll = () => {
         navigate('/countries');
         setShowCountries([]);

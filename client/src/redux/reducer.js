@@ -1,4 +1,4 @@
-import { DISPLAY_COUNTRY, DISPLAY_ALL_COUNTRIES, DISPLAY_CONTINENT, REMOVE_COUNTRY } from "./action-types";
+import { DISPLAY_COUNTRY, DISPLAY_ALL_COUNTRIES, DISPLAY_CONTINENT, REMOVE_COUNTRY, COUNTRY_DETAILS } from "./action-types";
 
 const initialState = {
     allCountries: [],
@@ -27,6 +27,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allCountries: action.payload,
                 filteredCountries: action.payload
+            }
+
+        case COUNTRY_DETAILS:
+            return {
+                ...state,
+                allCountries: action.payload,
             }
         
         case REMOVE_COUNTRY:

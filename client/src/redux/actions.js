@@ -1,4 +1,4 @@
-import { DISPLAY_COUNTRY, DISPLAY_ALL_COUNTRIES, DISPLAY_CONTINENT, REMOVE_COUNTRY } from './action-types'
+import { DISPLAY_COUNTRY, DISPLAY_ALL_COUNTRIES, DISPLAY_CONTINENT, COUNTRY_DETAILS, REMOVE_COUNTRY } from './action-types'
 import axios from 'axios';
 
 const endpoint = 'http://localhost:3001'
@@ -31,7 +31,7 @@ export const displayAllCountries = () => {
             });
         } catch (error) {
             
-        }
+        };
     };
 };
 
@@ -43,9 +43,24 @@ export const displayContinent = (continent) => {
             return dispatch({
                 type: DISPLAY_CONTINENT,
                 payload: data,
-            })
+            });
         } catch (error) {
             console.log(error.message);
+        };
+    };
+};
+
+export const countryDetails = (id) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`${endpoint}/countries/${id}`);
+            console.log('Fetched country details:', data);
+            return dispatch({
+                type: COUNTRY_DETAILS,
+                payload: data,
+            });        
+        } catch (error) {
+            console.log(error.message);            
         };
     };
 };
