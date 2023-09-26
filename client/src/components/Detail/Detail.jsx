@@ -1,16 +1,16 @@
 import './Detail.modules.css'
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { countryDetails } from '../../redux/actions';
+import { countryDetails } from '../../redux/countryActions';
 import React from 'react';
 
 
 function Detail () {
     const { id } = useParams();
     const dispatch = useDispatch();
-    //const history = withRouter();//Hook de react-router-dom para navegar en páginas "almacenadas"
-    const countryData = useSelector((state) => state.allCountries);
+    const navigate = useNavigate();
+    const countryData = useSelector((state) => state.allCountries.find((country) => country.id === id));
     const { name, flag, continent, capital, subregion, area, population, activities } = countryData;
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function Detail () {
     }, [dispatch, id]);
 
     const handleBack = () => {
-        window.history.back();
+        navigate(-1);
     }
 
         return (

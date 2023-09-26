@@ -11,7 +11,7 @@ function Pagination ({ items, itemsPerPage, onPageChange }) {
     }
 
     return (
-        <div className='pagination'>
+        <div className='pagination-buttons'>
             <button
                 onClick={() => handlePageChange(1)}
                 disabled = {currentPage === 1}>First</button>

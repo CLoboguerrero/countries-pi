@@ -41,10 +41,10 @@
 }
 
 .img-card{
-    border-radius: 50%;
     border: 10px solid #e3f9fb;
     box-shadow: 11px 20px 9px 0px #000000a8;
-    width: 250px;
+    max-width: 250px;
+    max-height: 150px;
     justify-content: center;
     margin-top: 10px;
     margin-bottom: 50px;

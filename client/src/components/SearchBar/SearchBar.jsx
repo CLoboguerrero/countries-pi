@@ -3,10 +3,9 @@ import { React } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { displayCountry } from '../../redux/actions';
+import { displayCountry } from '../../redux/countryActions';
 
-function SearchBar () {
-
+function SearchBar ({ currentPage, setCurrentPage }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [name, setName] = useState('');
@@ -22,10 +21,12 @@ function SearchBar () {
             if (location.pathname !== '/countries') {//pathname, es una propiedad del hook useLocation de react-router-dom
                 navigate('/countries');
             }
+            setCurrentPage(1)
             dispatch(displayCountry(name));
             setName('')
         }
     }
+
 
     return (
         <div className='nav-elements'>

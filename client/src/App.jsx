@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Landing from './components/Landing/Landing';
@@ -10,15 +11,16 @@ import About from './components/About/About';
 
 function App() {
   const location = useLocation();
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
 <>
     <div className='App'>
-      {location.pathname !== '/' ? <Nav /> : null}
+      {location.pathname !== '/' ? <Nav urrentPage={currentPage} setCurrentPage={setCurrentPage} /> : null}
       <Routes>
         <Route path= '/' element={<Landing />} />
         <Route path= '/home' element={<Home />} />
-        <Route path= '/countries' element={<Cards />} />
+        <Route path= '/countries' element={<Cards currentPage={currentPage} setCurrentPage={setCurrentPage} />} />
         <Route path= '/detail/:id' element={<Detail />} />
         <Route path= '/activities' element={<Activities />} />
         <Route path= '/about' element={<About />} />

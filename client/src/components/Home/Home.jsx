@@ -1,6 +1,6 @@
 import './Home.modules.css'
 import React from 'react';
-import { displayContinent, displayAllCountries } from '../../redux/actions';
+import { displayContinent, displayAllCountries } from '../../redux/countryActions';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

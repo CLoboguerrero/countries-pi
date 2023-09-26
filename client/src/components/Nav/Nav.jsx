@@ -2,7 +2,7 @@ import './Nav.modules.css';
 import SearchBar from '../SearchBar/SearchBar';
 import { Link } from 'react-router-dom';
 
-function Nav () {
+function Nav ({ currentPage, setCurrentPage }) {
     return (
         <nav className='nav-bar'>
             <div className='nav-links'>
@@ -12,7 +12,7 @@ function Nav () {
                 <p><Link to = '/activities'>Activities</Link></p>
                 <p><Link to = '/about'>About</Link></p>
             </div>
-            <SearchBar />
+            <SearchBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </nav>
     );
 }

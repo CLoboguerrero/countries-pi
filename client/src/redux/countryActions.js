@@ -25,9 +25,10 @@ export const displayAllCountries = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`${endpoint}/countries`);
+            console.log(data);
             return dispatch({
-                type:DISPLAY_ALL_COUNTRIES,
-                payload:data,
+                type: DISPLAY_ALL_COUNTRIES,
+                payload: data,
             });
         } catch (error) {
             
