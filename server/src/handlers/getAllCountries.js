@@ -16,7 +16,7 @@ const getAllCountries = async (req, res) => {
           const {
             name: { common },
             cca3: id,
-            flags: { svg: flag },
+            flags: { png: flag },
             capital,
             region,
             subregion,
