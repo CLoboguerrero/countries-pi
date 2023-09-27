@@ -17,6 +17,14 @@ function Activities () {
         country: []
     })
 
+    const [errors, setErrors] = useState ({
+        name:'Name is required',
+        difficulty:'Please, select a difficulty for the Activity',
+        duration: 'Please set duration time',
+        season: 'Please select a season of the year',
+        country: 'Please select one o more countries for this activity'
+    })
+
 
     // const handleDifficulty = (event) => {
     //     setSelectedDifficulty(event.target.value);

@@ -16,7 +16,7 @@ function App() {
   return (
 <>
     <div className='App'>
-      {location.pathname !== '/' ? <Nav urrentPage={currentPage} setCurrentPage={setCurrentPage} /> : null}
+      {location.pathname !== '/' ? <Nav setCurrentPage={setCurrentPage} /> : null}
       <Routes>
         <Route path= '/' element={<Landing />} />
         <Route path= '/home' element={<Home />} />

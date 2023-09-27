@@ -1,7 +1,7 @@
 import './Cards.modules.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { displayContinent, displayAllCountries, removeCountry } from '../../redux/countryActions';
+import { displayContinent, displayAllCountries } from '../../redux/countryActions';
 import React from 'react';
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';

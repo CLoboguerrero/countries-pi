@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { displayCountry } from '../../redux/countryActions';
 
-function SearchBar ({ currentPage, setCurrentPage }) {
+function SearchBar ({ setCurrentPage }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [name, setName] = useState('');
