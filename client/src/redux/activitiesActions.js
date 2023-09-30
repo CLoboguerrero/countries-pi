@@ -8,7 +8,7 @@ export const postActivity = (formData) => {
 
         try {
             const { data } = await axios.post(`${endpoint}/activities`, formData)
-    
+            
         } catch (error) {
             console.log(error.message);
         };

@@ -5,6 +5,7 @@ const initialState = {
     selectedContinent: [],
     filteredCountries: [],
     allActivities: [],
+    countrySpecs: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -45,13 +46,15 @@ const reducer = (state = initialState, action) => {
 
         case POST_ACTIVITY:
             return{
+                ...state,
                 allActivities: action.payload,
             }
 
-        // case COUNTRY_DETAILS:
-        //     return{
-        //         allCountries: action.payload,
-        //     }
+        case COUNTRY_DETAILS:
+            return{
+                ...state,
+                countrySpecs: action.payload,
+            }
 
         default:
             return {...state}

@@ -25,6 +25,15 @@ const ActivitiesForm = () => {
     })
 
     const handleChange = (event) => {
+        
+        if (event.target.name === 'country'){
+            const updatedValue = event.target.value.split(',').map(country => country.trim());
+            setFormData({
+                ...formData,
+                country: updatedValue,
+            })
+        }
+
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
