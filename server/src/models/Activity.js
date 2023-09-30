@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
         //     autoIncrement: true,
         //     primaryKey: true,
         // },
-        name: {
+        activityName: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -23,10 +23,10 @@ module.exports = (sequelize) => {
             type: DataTypes.ENUM('Spring', 'Summer', 'Fall', 'Winter', 'All Year'),
             allowNull: false
         },
-        countries: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: true,
-        }
+        // countries: {
+        //     type: DataTypes.ARRAY(DataTypes.STRING),
+        //     allowNull: true,
+        // }
     }, 
     {
        timestamps: false,

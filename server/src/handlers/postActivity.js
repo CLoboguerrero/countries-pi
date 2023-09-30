@@ -2,23 +2,24 @@ const { Activity, Country } = require('../db');
 
 const postActivity = async (req, res) => {
 
-    const {name, difficulty, duration, season, countries} = req.body;
+    const {activityName, difficulty, duration, season, countries} = req.body;
 
-    if(!name || !difficulty || !duration || !season){
+    if(!activityName || !difficulty || !duration || !season){
         return res.status(400).json({ error: 'Missing required fields!' });
     }
 
     try {
         const newActivity = await Activity.create({
-            name,
+            activityName,
             difficulty,
             duration,
             season
         });
         
-       // newActivity.addCountries(countries);// Aregar países a la actividad
+        console.log(activityName, difficulty, duration, season);
+    //newActivity.addCountries(countries);// Aregar países a la actividad
 
-        //Lógica para validar la ID de un país:
+    //Lógica para validar la ID de un país:
         const addedCountries = [];
         for (const countryId of countries){
             try {
@@ -35,6 +36,7 @@ const postActivity = async (req, res) => {
         }
 
         res.status(201).json({newActivity, addedCountries});
+        //res.status(201).json({newActivity});
     } catch (error) {
         console.log('Error creating activity:', error);
         res.status(500).json({ error: 'An error occurred while creating the activity'})
