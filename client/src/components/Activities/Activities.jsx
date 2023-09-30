@@ -1,5 +1,6 @@
 import './Activities.modules.css';
 import { useState } from 'react';
+import validate from './validations';
 
 function Activities () {
     const seasons = ['Spring', 'Summer', 'Autum', 'Winter', 'All Year'];
@@ -18,13 +19,38 @@ function Activities () {
     })
 
     const [errors, setErrors] = useState ({
-        name:'Name is required',
+        ac_name:'Name is required',
         difficulty:'Please, select a difficulty for the Activity',
-        duration: 'Please set duration time',
+        duration: '',
         season: 'Please select a season of the year',
         country: 'Please select one o more countries for this activity'
     })
 
+    const validate = (state, name) => {//state= estado del error. name = input que requiere validar
+        if (name === 'name'){
+            if(state.name === '') setErrors({...errors, name:"Activity name required!"});
+            else if(state.name.length < 3 || state.name.length > 20) setErrors({...errors, name:"Must have between 3 and 20 characters"});
+            else setErrors({...errors, name:''});
+        }
+        if (name === 'difficulty'){
+            //if(state.difficulty !== 'easy'){}
+        }
+        if (name === 'duration') {
+            if(isNaN(parseInt(state.duration))) setErrors({...errors, duration:"Please, insert a numeric value"});
+            else setErrors({...errors, duration:''});
+         }
+        if (name === 'seaon') {
+            //if(state.season !== 'Spring' || state.season !== 'Summer' || state.season !== 'Autum' || state.season !== 'Winter' || state.season !== 'All Year'){
+
+            //}
+        }
+        if (name === 'country') {
+            //if (name !== ''){
+
+            //}
+        }
+
+    }
 
     // const handleDifficulty = (event) => {
     //     setSelectedDifficulty(event.target.value);
@@ -51,11 +77,34 @@ function Activities () {
             }
         }
 
+        
         setState({
             ...state,
             [event.target.name]: event.target.value
         })
-        return;
+        
+        //Re-renderizado!!!!! No se puede checar algo después de haber modificado une estado global o local
+        //validate(state, event.target.name);// Para validar se pasa como estado exactamente lo mismo a la modificación del estado (useState anterior)
+        validate({
+            ...state,
+            [event.target.name]: event.target.value
+        }, event.target.name)
+    }
+    
+    const disabledButton = () => {
+        let aux = true;
+        for(let error in errors){
+            if(errors[error] === '') return true;
+            // else{
+            //     aux = true;
+            //     break;
+            // }
+        }
+        //return aux;
+    }
+
+    const isFormValid = () => {
+        return !errors.name && !errors.difficulty && !errors.duration && !errors.season && !errors.country && state.name && state.difficulty && state.duration && state.season && state.country
     }
 
     const remove = (event) => {
@@ -69,11 +118,15 @@ function Activities () {
 
     return (
         <div>
-            {console.log(state)}
+            {/* {console.log(state)} */}
+            {console.log(errors)}
             <form className='activities-form'>
                 <div className='activity-name'>
                     <label>Activity Name: </label>
                     <input onChange={handleChange} type="text" name='name' placeholder='i.e. Balloon Sightseeing' />
+                    {/* Mostar el error en el input */}
+                    <br />
+                    <span>{errors.name}</span>
                 </div>
                  <br />
                 
@@ -91,6 +144,8 @@ function Activities () {
                 <div className='activities-duration'>
                     <label>Duration: </label>
                     <input onChange={handleChange} type="text" name='duration' placeholder='i.e. 120'/> Minutes
+                    <br />
+                    <span>{errors.duration}</span>
                 </div>
                 <br />
 
@@ -117,8 +172,10 @@ function Activities () {
                     }
                 </div>
                 <br />
-
-                <input onChange={handleChange} type="submit" />
+                    <button
+                        className={isFormValid() ? 'enabled-button' : 'disabled-button'}
+                        disabled={!isFormValid()}>Submit
+                    </button>
             </form>
         </div>
     );

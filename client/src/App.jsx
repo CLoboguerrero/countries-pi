@@ -6,7 +6,7 @@ import Landing from './components/Landing/Landing';
 import Home from './components/Home/Home';
 import Cards from './components/Cards/Cards'
 import Detail from './components/Detail/Detail';
-import Activities from './components/Activities/Activities'
+import ActivitiesForm from './components/Activities/ActivitiesForm'
 import About from './components/About/About';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
         <Route path= '/home' element={<Home />} />
         <Route path= '/countries' element={<Cards currentPage={currentPage} setCurrentPage={setCurrentPage} />} />
         <Route path= '/detail/:id' element={<Detail />} />
-        <Route path= '/activities' element={<Activities />} />
+        <Route path= '/activities' element={<ActivitiesForm />} />
         <Route path= '/about' element={<About />} />
       </Routes>
     </div>
