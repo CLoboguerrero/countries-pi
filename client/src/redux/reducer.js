@@ -1,8 +1,7 @@
-import { DISPLAY_COUNTRY, DISPLAY_ALL_COUNTRIES, DISPLAY_CONTINENT, REMOVE_COUNTRY, COUNTRY_DETAILS, POST_ACTIVITY } from "./action-types";
+import { DISPLAY_COUNTRY, DISPLAY_ALL_COUNTRIES, DISPLAY_CONTINENT, COUNTRY_DETAILS, POST_ACTIVITY } from "./action-types";
 
 const initialState = {
     allCountries: [],
-    selectedContinent: [],
     filteredCountries: [],
     allActivities: [],
     countrySpecs: []
@@ -35,14 +34,14 @@ const reducer = (state = initialState, action) => {
                 filteredCountries: action.payload
             }
 
-        case REMOVE_COUNTRY:
-            const updateAllCountries = state.allCountries.filter((country) => country.id !== action.payload);
-            const updateAllCountriesFilter = state.filteredCountries.filter((country) => country.id !== action.payload);
-            return {
-                ...state,
-                allCountries: updateAllCountries,
-                filteredCountries: updateAllCountriesFilter
-            }
+        // case REMOVE_COUNTRY:
+        //     const updateAllCountries = state.allCountries.filter((country) => country.id !== action.payload);
+        //     const updateAllCountriesFilter = state.filteredCountries.filter((country) => country.id !== action.payload);
+        //     return {
+        //         ...state,
+        //         allCountries: updateAllCountries,
+        //         filteredCountries: updateAllCountriesFilter
+        //     }
 
         case POST_ACTIVITY:
             return{

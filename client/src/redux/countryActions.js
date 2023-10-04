@@ -1,4 +1,4 @@
-import { DISPLAY_COUNTRY, DISPLAY_ALL_COUNTRIES, DISPLAY_CONTINENT, COUNTRY_DETAILS, REMOVE_COUNTRY } from './action-types'
+import { DISPLAY_COUNTRY, DISPLAY_ALL_COUNTRIES, DISPLAY_CONTINENT, COUNTRY_DETAILS } from './action-types'
 import axios from 'axios';
 
 const endpoint = 'http://localhost:3001'
@@ -65,8 +65,3 @@ export const countryDetails = (id) => {
         };
     };
 };
-
-export const removeCountry = (id) => ({
-    type: REMOVE_COUNTRY,
-    payload: id,
-});

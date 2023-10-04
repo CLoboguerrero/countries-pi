@@ -38,13 +38,14 @@ function Detail () {
                 {Activities && Activities.length > 0 ? (
                     Activities.map((activity, index) => (
                         <li key={index}>
-                            {activity.activityName} - Difficulty: {activity.difficulty} - Duration: {activity.duration} - Season: {activity.season}
+                            Activity: {activity.activityName} - Difficulty: {activity.difficulty} - Duration: {activity.duration} - Season: {activity.season}
                         </li>
                     ))
                 ) : (
                     <li>No activities available</li>
                 )}
             </ul>
+            
             <button onClick={handleBack}>Go back</button>
         </div>
     );

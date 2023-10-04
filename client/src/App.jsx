@@ -7,6 +7,7 @@ import Home from './components/Home/Home';
 import Cards from './components/Cards/Cards'
 import Detail from './components/Detail/Detail';
 import ActivitiesForm from './components/Activities/ActivitiesForm'
+import CountriesList from './components/Activities/CountriesList';
 import About from './components/About/About';
 
 function App() {

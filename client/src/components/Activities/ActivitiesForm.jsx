@@ -2,6 +2,7 @@ import './ActivitiesForm.modules.css'
 import { useState } from 'react';
 import { postActivity } from '../../redux/activitiesActions';
 import { useDispatch } from  'react-redux';
+import  CountriesList from './CountriesList'
 import validate from './validations';
 
 const ActivitiesForm = () => {
@@ -26,14 +27,6 @@ const ActivitiesForm = () => {
 
     const handleChange = (event) => {
         
-        if (event.target.name === 'country'){
-            const updatedValue = event.target.value.split(',').map(country => country.trim());
-            setFormData({
-                ...formData,
-                country: updatedValue,
-            })
-        }
-
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
@@ -57,6 +50,7 @@ const ActivitiesForm = () => {
 
     return (
         <div>
+            {console.log(formData)}
             <form onSubmit={handleSubmit} className='activities-form'>
                 <div>
                     <label htmlFor="activityName">Activity: </label>
@@ -105,13 +99,7 @@ const ActivitiesForm = () => {
                 <br />
 
                 <label htmlFor="country">Country: </label>
-                <input
-                    id='country'
-                    name='country' 
-                    type="text"
-                    value={formData.country}
-                    onChange={handleChange} 
-                />
+                <CountriesList onChange={handleChange} />
                 <br />                  
 
                 <button
