@@ -17,7 +17,11 @@ const validate = (formData) => {//state= estado del error. name = input que requ
     }
     
     if (!formData.duration){
-        errors.duration = 'Complete this field'
+        errors.duration = 'Complete this field';
+    }
+
+    if (!formData.country){
+        errors.country = 'Please select at least one Country';
     }
     // if (name === 'name'){
     //     if(state.name === '') setErrors({...errors, name:"Activity name required!"});

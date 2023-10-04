@@ -48,14 +48,14 @@ const CountriesList = ({ onChange }) => {
                     ))}
             </select>
 
-            <ul>
+            <div>
                 {selectedCountriesList.map((countryName) => (
-                    <li key={countryName}>
+                    <span key={countryName}>
                         {getCountryName(countryName)}
                         <button onClick={() => handleDelete(countryName)}>X</button>
-                    </li>
+                    </span>
                 ))}
-            </ul>
+            </div>
         </div>
     )
 }

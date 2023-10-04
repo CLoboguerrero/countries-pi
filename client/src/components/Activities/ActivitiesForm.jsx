@@ -7,6 +7,8 @@ import validate from './validations';
 
 const ActivitiesForm = () => {
 
+    const seasons = ['Spring', 'Summer', 'Fall', 'Winter', 'All Year'];
+
     const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
@@ -25,8 +27,10 @@ const ActivitiesForm = () => {
         country: [],
     })
 
+    const [submitted, setSubmitted] = useState(false);
+    const [confirmationMessage, setConfirmationMessage] = useState('');
+
     const handleChange = (event) => {
-        
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
@@ -38,15 +42,41 @@ const ActivitiesForm = () => {
         }))
     }
 
-
     const isFormValid = () => {
-        return !errors.activityName && !errors.difficulty && !errors.duration && !errors.season && !errors.country && formData.activityName && formData.difficulty && formData.duration && formData.season && formData.country
+        return !errors.activityName && !errors.difficulty && !errors.duration && !errors.season && !errors.country && formData.activityName && formData.difficulty && formData.duration && formData.season && formData.country.length > 0
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(postActivity(formData))
-    }
+        if (isFormValid()){
+            dispatch(postActivity(formData))
+            setConfirmationMessage(
+                `Form submitted successfully! 
+                Activity: ${formData.activityName}, 
+                Difficulty: ${formData.difficulty}, 
+                Duration: ${formData.duration}, 
+                Season: ${formData.season}, 
+                Countries: ${formData.country.join(', ')}`
+            );
+
+            setFormData({
+                activityName: '',
+                difficulty: '',
+                duration: '',
+                season: '',
+                country: [],
+            });
+            setErrors({
+                activityName: '',
+                difficulty: '',
+                duration: '',
+                season: '',
+                country: [],
+            });
+
+            setSubmitted(true);
+        }
+    };
 
     return (
         <div>
@@ -89,13 +119,12 @@ const ActivitiesForm = () => {
                 <br />
 
                 <label htmlFor="season">Season: </label>
-                <input
-                    id='season'
-                    name='season' 
-                    type="text"
-                    value={formData.season}
-                    onChange={handleChange} 
-                />
+                <select name="season" onChange={handleChange}>
+                    <option value="">Select Season:</option>
+                    {
+                        seasons.map(seasonOption => <option key={seasonOption} value={seasonOption}>{seasonOption}</option>)
+                    }
+                </select>
                 <br />
 
                 <label htmlFor="country">Country: </label>
@@ -107,6 +136,7 @@ const ActivitiesForm = () => {
                     disabled={!isFormValid()}>Submit
                 </button>
             </form>
+            {submitted && <div className='confirmation-message'>{confirmationMessage}</div>}
         </div>
     )
 }
