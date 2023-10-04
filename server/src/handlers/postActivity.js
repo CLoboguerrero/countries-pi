@@ -18,7 +18,7 @@ const postActivity = async (req, res) => {
         });
         
     //newActivity.addCountries(countries);// Aregar países a la actividad
-    const countryCodes = country.split(',').map(code => code.trim()).filter(code => code);
+   const countryCodes = country.map(code => code.trim()).filter(code => code);
     //Lógica para validar la ID de un país:
         const addedCountries = [];
         for (const countryId of countryCodes){
