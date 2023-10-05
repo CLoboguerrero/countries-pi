@@ -6,10 +6,13 @@ import  CountriesList from './CountriesList'
 import validate from './validations';
 
 const ActivitiesForm = () => {
-
-    const seasons = ['Spring', 'Summer', 'Fall', 'Winter', 'All Year'];
-
+    
     const dispatch = useDispatch();
+    
+    const seasons = ['Spring', 'Summer', 'Fall', 'Winter', 'All Year'];
+    const difficulties = ['Very Easy', 'Easy', 'Medium', 'Hard', 'Very Hard']
+    
+    const [formKey, setFormKey] = useState(0); 
 
     const [formData, setFormData] = useState({
         activityName: '',
@@ -66,6 +69,9 @@ const ActivitiesForm = () => {
                 season: '',
                 country: [],
             });
+
+            setFormKey((prevKey) => prevKey + 1)<
+
             setErrors({
                 activityName: '',
                 difficulty: '',
@@ -95,40 +101,50 @@ const ActivitiesForm = () => {
                 </div>
                 <br />
 
-                <label htmlFor="difficulty">Difficulty: </label>
-                <input
-                    id='difficulty'
-                    name='difficulty' 
-                    type="text"
-                    value={formData.difficulty}
-                    onChange={handleChange} 
-                />
-                <br />
+                <div>
+                    <label htmlFor="difficulty">Difficulty: </label>
+                    {difficulties.map((difLevel) => (
+                        <div key={difLevel}>
+                            <input 
+                                type='radio'
+                                id={difLevel}
+                                name='difficulty'
+                                value={difLevel}
+                                checked={formData.difficulty === difLevel}
+                                onChange={handleChange}
+                            />
+                            <label htmlFor={difLevel}>{difLevel}</label>
+                        </div>
+                    ))}
+                    <br />
+                </div>
 
                 <div>
-                <label htmlFor="duration">Duration </label>
-                <input
-                    id='duration'
-                    name='duration' 
-                    type="text"
-                    value={formData.duration}
-                    onChange={handleChange} 
-                />
-                {errors.duration && <p>{errors.duration}</p>}
+                    <label htmlFor="duration">Duration </label>
+                    <input
+                        id='duration'
+                        name='duration' 
+                        type="text"
+                        value={formData.duration}
+                        onChange={handleChange} 
+                    />
+                    {errors.duration && <p>{errors.duration}</p>}
                 </div>
                 <br />
 
                 <label htmlFor="season">Season: </label>
-                <select name="season" onChange={handleChange}>
+                <select name="season" value={formData.season} onChange={handleChange}>
                     <option value="">Select Season:</option>
-                    {
-                        seasons.map(seasonOption => <option key={seasonOption} value={seasonOption}>{seasonOption}</option>)
+                    {seasons.map(seasonOption => 
+                    <option key={seasonOption} value={seasonOption}>
+                        {seasonOption}
+                    </option>)
                     }
                 </select>
                 <br />
 
                 <label htmlFor="country">Country: </label>
-                <CountriesList onChange={handleChange} />
+                <CountriesList key={formKey} onChange={handleChange} />
                 <br />                  
 
                 <button
